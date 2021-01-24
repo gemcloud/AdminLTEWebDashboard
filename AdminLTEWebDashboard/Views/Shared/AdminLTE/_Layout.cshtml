@@ -44,5 +44,37 @@
         <partial name="AdminLTE/_Footer" />
     </div>
     <partial name="AdminLTE/_Scripts" />
+    <script>
+    $(document).ready(function () {
+        // javascript for AdminLTE submenu open / select.
+        var url = window.location;
+        const allLinks = document.querySelectorAll('.nav-item a');
+        const currentLink = [...allLinks].filter(e => {
+            return e.href == url;
+        });
+
+        currentLink[0].classList.add("active");
+        currentLink[0].closest(".nav-treeview").style.display = "block ";
+        currentLink[0].closest("ul.nav-treeview").closest('li').classList.add('menu-open');
+        $('.menu-open').find('a').each(function () {
+            if (!$(this).parents().hasClass('active')) {
+                $(this).parents().addClass("active");
+                $(this).addClass("active");
+            }
+        });
+    });
+    //this makes the current link containing li of class "active"
+    $(document).ready(function () {
+        var url = window.location.href;
+        var activePage = url;
+        $('.nav-item a').each(function () {
+            var linkPage = this.href;
+
+            if (activePage == linkPage) {
+                $(this).closest("li").addClass("active");
+            }
+        });
+    });
+    </script>
 </body>
 </html>

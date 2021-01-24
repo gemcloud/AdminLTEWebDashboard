@@ -1,4 +1,4 @@
-﻿@using static AdminLTEWebDashboard.Helper.NavigationIndicatorHelper;
+﻿@*@using static AdminLTEWebDashboard.Helper.NavigationIndicatorHelper;*@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="~/Home" class="brand-link">
         <img src="~/img/gem/gemLogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
@@ -26,9 +26,10 @@ else
     </div>
 }
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
                 <li class="nav-item ">
-                    <a asp-controller="Home" asp-action="Index" class="nav-link @Url.MakeActiveClass("home","index")">
+                    @*<a asp-controller="Home" asp-action="Index" class="nav-link @Url.MakeActiveClass("home","index")">*@
+                    <a asp-controller="Home" asp-action="Index" class="nav-link">
                         <i class="nav-icon fas fa-home"></i>
                         <p>
                             Home
@@ -38,7 +39,8 @@ else
                 @*@if (User.Identity.IsAuthenticated)*@
                 @* { *@
                 <li class="nav-item ">
-                    <a asp-controller="Home" asp-action="Privacy" class="nav-link @Url.MakeActiveClass("home","privacy")">
+                    @*<a asp-controller="Home" asp-action="Privacy" class="nav-link @Url.MakeActiveClass("home","privacy")">*@
+                    <a asp-controller="Home" asp-action="Privacy" class="nav-link">
                         <i class="nav-icon fas fa-lock"></i>
                         <p>
                             Privacy
@@ -47,15 +49,123 @@ else
                 </li>
                 @* } *@
 
-                <li class="nav-item ">
-                    <a asp-controller="JwtToken" asp-action="Index" class="nav-link @Url.MakeActiveClass("JwtToken","Index")">
-                        <i class="nav-icon fas fa-grin-tongue"></i>
+                @*<li class="nav-item ">
+            <a asp-controller="JwtToken" asp-action="Index" class="nav-link @Url.MakeActiveClass("JwtToken","Index")">
+                <i class="nav-icon fas fa-grin-tongue"></i>
+                <p>
+                    Jwt Token
+                </p>
+            </a>
+        </li>*@
+                <li class="nav-item has-treeview ">
+                    <a href="#" class="nav-link ">
+                        <i class="nav-icon fas fa-building green"></i>
                         <p>
-                            Jwt Token
+                            JwtToken
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item ">
+                            <a asp-controller="JwtToken" asp-action="Index" class="nav-link">
+                                <i class="nav-icon fas fa-grin-tongue"></i>
+                                <p>
+                                    Index
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/JwtToken/CreateJwt" class="nav-link">
+                                <i class="nav-icon fas fa-cross"></i>
+                                <p>
+                                    Create
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/JwtToken/RefreshToken" class="nav-link">
+                                <i class="nav-icon fas fa-refresh"></i>
+                                <p>
+                                    Refresh
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview ">
+                    <a href="#" class="nav-link ">
+                        <i class="nav-icon fas fa-building green"></i>
+                        <p>
+                            Settings
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item ">
+                            <a href="/JwtToken/CreateJwt" class="nav-link">
+                                <i class="nav-icon fas fa-grin-tongue"></i>
+                                <p>
+                                    Language
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-cross"></i>
+                                <p>
+                                    Tax
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-address-book"></i>
+                                <p>
+                                    Currency
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </nav>
     </div>
 </aside>
+
+<script >
+    // solution #1: set the js <script to footer>
+    // solution #2: set jquery to header section.
+    // solution #3: put to _layout.cshtml
+
+    //$(document).ready(function () {
+    //    // javascript for AdminLTE submenu open / select.
+    //    var url = window.location;
+    //    const allLinks = document.querySelectorAll('.nav-item a');
+    //    const currentLink = [...allLinks].filter(e => {
+    //        return e.href == url;
+    //    });
+
+    //    currentLink[0].classList.add("active");
+    //    currentLink[0].closest(".nav-treeview").style.display = "block ";
+    //    currentLink[0].closest("ul.nav-treeview").closest('li').classList.add('menu-open');
+    //    $('.menu-open').find('a').each(function () {
+    //        if (!$(this).parents().hasClass('active')) {
+    //            $(this).parents().addClass("active");
+    //            $(this).addClass("active");
+    //        }
+    //    });
+    //});
+    ////this makes the current link containing li of class "active"
+    //$(document).ready(function () {
+    //    var url = window.location.href;
+    //    var activePage = url;
+    //    $('.nav-item a').each(function () {
+    //        var linkPage = this.href;
+
+    //        if (activePage == linkPage) {
+    //            $(this).closest("li").addClass("active");
+    //        }
+    //    });
+    //});
+</script>
